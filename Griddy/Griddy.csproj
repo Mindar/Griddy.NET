@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Griddy.NET</PackageId>
+        <Title>Griddy.NET</Title>
+        <Authors>Alexander Schramm</Authors>
+        <Description>A library to help with sparse, locally-dense 2-dimensional grids. </Description>
+        <PackageTags>grid</PackageTags>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+</Project>
