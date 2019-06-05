@@ -11,7 +11,7 @@
         <LangVersion>latest</LangVersion>
         <Copyright>2019 Alexander Schramm</Copyright>
         <PackageProjectUrl>https://github.com/Mindar/Griddy.NET</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/Mindar/Griddy.NET/LICENSE</PackageLicenseUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/Mindar/Griddy.NET.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
     </PropertyGroup>
