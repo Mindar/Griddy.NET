@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -17,7 +18,7 @@ namespace Griddy
             {
                 foreach (var thing in _cells)
                 {
-                    if (!thing.Equals(default(T)))
+                    if (EqualityComparer<T>.Default.Equals(thing, default))
                     {
                         return false;
                     }
@@ -29,8 +30,18 @@ namespace Griddy
 
         public T this[int col, int row]
         {
-            get { return _cells[col + ChunkSize * row]; }
-            set { _cells[col + ChunkSize * row] = value; }
+            get
+            {
+                if(col < 0 || col > ChunkSize) throw new ArgumentOutOfRangeException(nameof(col), "Value was: " + col.ToString());
+                if(row < 0 || row > ChunkSize) throw new ArgumentOutOfRangeException(nameof(row), "Value was: " + row.ToString());
+                return _cells[col + ChunkSize * row];
+            }
+            set
+            {
+                if(col < 0 || col > ChunkSize) throw new ArgumentOutOfRangeException(nameof(col), "Value was: " + col.ToString());
+                if(row < 0 || row > ChunkSize) throw new ArgumentOutOfRangeException(nameof(row), "Value was: " + row.ToString());
+                _cells[col + ChunkSize * row] = value;
+            }
         }
         public IEnumerator<T> GetEnumerator()
         {
@@ -51,26 +62,6 @@ namespace Griddy
         {
             return _cells.Contains(item);
         }
-        
-        public static bool operator ==(GridChunk<T> first, object second)
-        {
-            return first.Equals(second);
-        }
-        
-        public static bool operator !=(GridChunk<T> first, object second)
-        {
-            return !first.Equals(second);
-        }
-        
-        public static bool operator ==(object first, GridChunk<T> second)
-        {
-            return second.Equals(first);
-        }
-        
-        public static bool operator !=(object first, GridChunk<T> second)
-        {
-            return !second.Equals(first);
-        }
 
         public override bool Equals(object obj)
         {
@@ -81,7 +72,7 @@ namespace Griddy
             {
                 for (int col = 0; col < ChunkSize; col++)
                 {
-                    if (!other[col, row].Equals(this[col, row]))
+                    if (!EqualityComparer<T>.Default.Equals(other[col, row], this[col, row]))
                     {
                         return false;
                     }

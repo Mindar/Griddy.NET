@@ -58,14 +58,18 @@ namespace Griddy
             {
                 chunks.Add(key, new GridChunk<T>());
             }
+            
+            // Sanitize negative indicies
+            chunkColOffset = chunkColOffset >= 0 ? chunkColOffset : (int) GridChunk<T>.ChunkSize + chunkColOffset;
+            chunkRowOffset = chunkRowOffset >= 0 ? chunkRowOffset : (int) GridChunk<T>.ChunkSize + chunkRowOffset;
                 
             // get the chunk to work with it
             var chunk = chunks[key];
             chunk[chunkColOffset, chunkRowOffset] = thing;
 
-            // If the thing was the default value for T, this might create an empty chunk.
-            // To prevent empty chunks we perform some cleanup here.
-            if (thing.Equals(default(T)) && chunk.IsEmpty)
+            // If the thing was the default value for T, this operation could create an empty chunk.
+            // To prevent empty chunks from existing, we perform some cleanup here.
+            if (EqualityComparer<T>.Default.Equals(thing, default) && chunk.IsEmpty)
             {
                 chunks.Remove(key);
             }
@@ -77,6 +81,10 @@ namespace Griddy
             int chunkCol = Math.DivRem(col, (int) GridChunk<T>.ChunkSize, out int chunkColOffset);
             int chunkRow = Math.DivRem(row, (int) GridChunk<T>.ChunkSize, out int chunkRowOffset);
             var key = (chunkCol, chunkRow);
+            
+            // Sanitize negative indicies
+            chunkColOffset = chunkColOffset >= 0 ? chunkColOffset : (int) GridChunk<T>.ChunkSize + chunkColOffset;
+            chunkRowOffset = chunkRowOffset >= 0 ? chunkRowOffset : (int) GridChunk<T>.ChunkSize + chunkRowOffset;
 
             // if there is no chunk at the position, we return the default value for whatever type we got 
             if (!chunks.ContainsKey(key))
