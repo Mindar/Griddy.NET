@@ -3,6 +3,7 @@ Griddy is a small C#.NET library to simplify working with 2d grids. It uses loca
 
 ![Nuget](https://img.shields.io/nuget/dt/Griddy.NET.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/nuget/v/Griddy.NET.svg)
 
 ## Usage
 Griddy's API is really simple to use and understand:

@@ -6,7 +6,7 @@
         <PackageId>Griddy.NET</PackageId>
         <Title>Griddy.NET</Title>
         <Authors>Alexander Schramm</Authors>
-        <Description>A library to help with sparse, locally-dense 2-dimensional grids. </Description>
+        <Description>A library to simplify working with 2d grids. </Description>
         <PackageTags>grid 2d</PackageTags>
         <LangVersion>latest</LangVersion>
         <Copyright>2019 Alexander Schramm</Copyright>
@@ -14,6 +14,7 @@
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/Mindar/Griddy.NET.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageVersion>1.1.0</PackageVersion>
     </PropertyGroup>
 
 </Project>
