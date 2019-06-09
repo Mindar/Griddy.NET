@@ -28,7 +28,7 @@ myGrid[1337, -42] = true;
 var result = myGrid[1337, -42];
 ```
 
-Griddy also works with classes as generic parameter.
+Griddy also works with reference types as generic parameter.
 
 ```c#
 Grid<Tree> plantedTrees = new Grid<Tree>();
@@ -44,7 +44,7 @@ var goodResult = plantedTrees[0, 1];
 // goodResult.ToString() == "Cedar";
 ```
 
-You can use Griddy to efficiently work with really big grids.
+You can use Griddy to work with really big grids. But note that ```.ComputeApproxBounds()``` does **not compute exact bounds** for the grid. The returned bounds are at most 63 larger than the actual bounding box containing all defined grid cells.
 
 
 ```c#
@@ -57,6 +57,6 @@ Console.WriteLine(myGrid.ChunkCount.ToString());
 // Output: 2
 
 Rectangle bounds = myGrid.ComputeApproxBounds();
-// bounds.Width == 9999999
-// bounds.Height == 9999999
+// bounds.Width == 10000000
+// bounds.Height == 10000000
 ```
