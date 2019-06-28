@@ -18,7 +18,7 @@ namespace Griddy
             {
                 foreach (var thing in _cells)
                 {
-                    if (EqualityComparer<T>.Default.Equals(thing, default))
+                    if (!EqualityComparer<T>.Default.Equals(thing, default))
                     {
                         return false;
                     }
@@ -45,12 +45,12 @@ namespace Griddy
         }
         public IEnumerator<T> GetEnumerator()
         {
-            return (IEnumerator<T>) _cells.GetEnumerator();
+            return ((IEnumerable<T>)_cells).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            return _cells.GetEnumerator();
         }
 
         public void Clear()

@@ -33,9 +33,14 @@ namespace Griddy
 
             int rectX = minX * (int) GridChunk<T>.ChunkSize;
             int rectY = minY * (int) GridChunk<T>.ChunkSize;
-            int rectWidth = (maxX - minX) * (int) GridChunk<T>.ChunkSize;
-            int rectHeight = (maxY - minY) * (int) GridChunk<T>.ChunkSize;
+            int rectWidth = (maxX - minX + 1) * (int) GridChunk<T>.ChunkSize;
+            int rectHeight = (maxY - minY + 1) * (int) GridChunk<T>.ChunkSize;
 
+            if (chunks.Count == 0)
+            {
+                rectWidth = 0;
+                rectHeight = 0;
+            }
 
             return new Rectangle(rectX, rectY, rectWidth, rectHeight);
         }
